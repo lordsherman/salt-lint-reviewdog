@@ -27,5 +27,5 @@ def parse_salt_lint_output(output):
 
 if __name__ == "__main__":
     input_text = sys.stdin.read()
-    rdjson_output = parse_salt_lint_output(input_text)
-    print(json.dumps(rdjson_output, indent=2))
+    for diagnostic in parse_salt_lint_output(input_text):
+        print(json.dumps(diagnostic))
