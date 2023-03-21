@@ -6,16 +6,15 @@ import sys
 def parse_salt_lint_output(output):
     pattern = r'\[(\d+)\] (.+?)\n(.*?):(\d+)'
     matches = re.finditer(pattern, output, re.MULTILINE)
-
+    
     diagnostics = {
         "source": {
             "name": "salt-lint",
-            "url": "https://example.com/url/to/salt-lint"
+            "url": "https://salt-lint.readthedocs.io"
         },
         "severity": "ERROR",
         "diagnostics": []
     }
-
     for match in matches:
         rule_number = match.group(1)
         rule_message = match.group(2)
@@ -53,12 +52,11 @@ def parse_salt_lint_output(output):
             }
         }
 
-        diagnostics["diagnostics"].append(diagnostic)
+        diagnostics.append(diagnostic)
 
     return diagnostics
 
 if __name__ == "__main__":
     input_text = sys.stdin.read()
     rdjson_output = parse_salt_lint_output(input_text)
-    for diagnostic in rdjson_output:
-        print(json.dumps(diagnostic))
+    print(json.dumps(rdjson_output))
