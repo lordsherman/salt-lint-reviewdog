@@ -10,7 +10,7 @@ def parse_salt_lint_output(output):
     diagnostics = []
     for match in matches:
         diagnostic = {
-            "source": "salt-lint",
+            "source": {"name": "salt-lint"},
             "severity": "ERROR",
             "message": f"{match.group(1)}: {match.group(2)}",
             "location": {
