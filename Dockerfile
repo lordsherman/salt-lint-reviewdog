@@ -9,4 +9,4 @@ RUN pip install salt-lint && \
 # Add salt_lint_to_rdjson.py script
 COPY salt_lint_to_rdjson.py /usr/local/bin/salt_lint_to_rdjson.py
 
-ENTRYPOINT ["/bin/bash", "-c"]
+ENTRYPOINT ["/bin/bash", "-c", "find . -type f -name '*.sls' -exec salt-lint {} \\; | /usr/local/bin/salt_lint_to_rdjson.py | reviewdog -f=rdjson -reporter=github-pr-review -efm='%f:%l:%c:%t %m' -diff='git diff' -level=info -tee"]
