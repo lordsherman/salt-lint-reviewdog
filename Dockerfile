@@ -10,4 +10,4 @@ RUN pip install salt-lint && \
 COPY salt_lint_to_rdjson.py /usr/local/bin/salt_lint_to_rdjson.py
 RUN chmod +x /usr/local/bin/salt_lint_to_rdjson.py
 
-ENTRYPOINT ["/bin/bash", "-c", "find . -type f -name '*.sls' -exec salt-lint {} \\; | /usr/local/bin/salt_lint_to_rdjson.py | reviewdog -reporter=github-pr-review -efm='%f:%l:%c:%t %m' -diff='git diff' -level=error -tee -fail-on-error"]
+ENTRYPOINT ["/bin/bash", "-c", "find . -type f -name '*.sls' -exec salt-lint {} \\; | /usr/local/bin/salt_lint_to_rdjson.py | reviewdog -f=rdjson -reporter=github-pr-review -diff='git diff' -level=error -tee -fail-on-error"]
