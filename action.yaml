@@ -1,0 +1,13 @@
+name: "Salt Lint Reviewdog"
+description: "Run salt-lint on a repo and use reviewdog to make comments"
+
+inputs:
+  github_token:
+    description: "GitHub Token"
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.github_token }}
