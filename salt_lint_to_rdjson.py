@@ -52,7 +52,7 @@ def parse_salt_lint_output(output):
             }
         }
 
-        diagnostics.append(diagnostic)
+        diagnostics["diagnostics"].append(diagnostic)
 
     return diagnostics
 
