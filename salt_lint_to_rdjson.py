@@ -19,7 +19,7 @@ def parse_salt_lint_output(output):
         rule_number = match.group(1)
         rule_message = match.group(2)
         file_path = match.group(3)
-        line_number = int(match.group(4)) - 1
+        line_number = int(match.group(4))
 
         if rule_number.startswith('2'):
             rule_url = f"https://salt-lint.readthedocs.io/en/latest/rules/formatting/#{rule_number}"
